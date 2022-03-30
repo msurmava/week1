@@ -16,7 +16,7 @@ class Thirty_days
   end
 
   def days_30
-    @months.select{|k,v| k if v == 30}.keys
+    @months.select{|k,v| k if v == 30}.keys.join(", ")
   end
 end
 
