@@ -1,3 +1,4 @@
+#returns how many days are from 1st of January to a specific date
 require "date"
 
 class Mydate
@@ -9,10 +10,12 @@ class Mydate
     puts "enter year"
     @year = gets.chomp().to_i
   end
+
   def date
     number_of_days = Date.new(@year,@month,@day).yday.to_s
   end
-  def orderal
+  
+  def days_in_order
     if date[-1]  ==  "1" &&  date !=  "11"
       return date  + "st"
     elsif date[-1] ==  "2" &&  date !=  "12"
@@ -23,8 +26,7 @@ class Mydate
       return date  + "th"
     end    
   end   
-   
 end
 
 
-puts Mydate.new.orderal
+puts Mydate.new.days_in_order
