@@ -1,8 +1,10 @@
 class Index 
   POSITION = 1
+  
     def initialize
       @vowels
     end
+
     def hash_with_indexes
       @vowels= { "a" => ("a".ord - "a".ord + POSITION),
         "e" => ("e".ord - "a".ord + POSITION),
