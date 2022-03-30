@@ -20,13 +20,18 @@ class Shop
     user_input
   end
   def one_item_at_a_time
-    user_input.each{|k,v| @list[k]=v.inject(:*)}
+    @list.each{|k,v| @list[k]=v.inject(:*)}
   end
   def total_sum
     one_item_at_a_time.values.inject(:+)
+  end
+  def newone
+     plain_list
+     one_item_at_a_time
+     total_sum
   end
 end
 
 
   
-puts Shop.new.one_item_at_a_time
+Shop.new.newone
