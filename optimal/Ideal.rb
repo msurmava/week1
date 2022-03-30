@@ -1,3 +1,5 @@
+#calculates ideal weight by height
+
 class Ideal_weight
     TOSUBTRACT = 100
     EDGE  = 0
@@ -8,7 +10,7 @@ class Ideal_weight
       puts  "Enter your height"
       @height = gets.chomp.to_i
     end
-    
+
     def optimal
       ideal = @height - TOSUBTRACT
       if ideal  < EDGE
@@ -18,3 +20,6 @@ class Ideal_weight
       end
     end
 end
+
+
+puts Ideal_weight.new.optimal
