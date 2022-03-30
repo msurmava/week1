@@ -3,6 +3,7 @@ class Shop
     @list = {}
     @price_quantitiy = []
   end
+
   def user_input
     loop do
     puts "Please enter item:"
@@ -16,19 +17,21 @@ class Shop
     end
     @list 
   end
+
   def plain_list
     user_input
   end
   def one_item_at_a_time
-    @list.each{|k,v| @list[k]=v.inject(:*)}
+    @list.each{|k,v| @list[k] = v.inject(:*)}
   end
   def total_sum
     one_item_at_a_time.values.inject(:+)
   end
+
   def newone
-     plain_list
-     one_item_at_a_time
-     total_sum
+    plain_list
+    one_item_at_a_time
+    total_sum
   end
 end
 
