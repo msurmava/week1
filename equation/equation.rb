@@ -18,7 +18,7 @@ class Equation
       root << ( -@bcoeff  - Math.sqrt(discriminant )) / AMULTIPLY * @acoeff
       root  = root.join(" and ")
     elsif discriminant == ZERO 
-   root << (-@bcoeff+Math.sqrt(discriminant))/AMULTIPLY*@acoeff
+   root << (-@bcoeff  + Math.sqrt(discriminant))  / AMULTIPLY * @acoeff
     else
       return "This has no ROOTS!"
     end
