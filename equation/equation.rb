@@ -1,8 +1,9 @@
-class Equation
-  FOR_DISC = 2
-  TO_MULTIPLY = 4
-  FOR_ROOT = 2
+FOR_DISC = 2
+TO_MULTIPLY = 4
+FOR_ROOT = 2
 
+class Equation
+  
   def initialize(first_coeff,second_coeff,third_coeff)
     @first_coeff = first_coeff.to_f
     @second_coeff = second_coeff.to_f
