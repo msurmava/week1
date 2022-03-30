@@ -1,6 +1,9 @@
+# Cheks what kind of triangle user has
+
 class Triangles
   POWER_2 = 2
   TOCOMPARE = 0
+
   def initialize
     @sides  = []
     puts  "Enter triangle side (cm):"
@@ -11,18 +14,23 @@ class Triangles
     @sides << gets.chomp.to_i
     @sides.sort!.reverse!
   end
+
   def triangle?
     @sides[0] < @sides[1] + @sides[2] && @sides[0]  !=  TOCOMPARE &&  @sides[1] !=  TOCOMPARE &&  @sides[2] !=  TOCOMPARE
   end
+
   def rectangular?
     @sides[0] **  POWER_2 == @sides[1]  **  POWER_2 + @sides[2] **  POWER_2
   end
+
   def isosceles?
     @sides[1] == @sides[2] || @sides[0] ==  @sides[1]
   end
+
   def equilateral?
     @sides[0] ==  @sides[1] &&  @sides[1] ==  @sides[2]
   end
+
   def kind_of_triangle
     if rectangular? && !isosceles?  &&  triangle?
       puts  "Your triangle is rectangular!"
@@ -41,3 +49,4 @@ class Triangles
 end
 
 
+Triangles.new.kind_of_triangle
