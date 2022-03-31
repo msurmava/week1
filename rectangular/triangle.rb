@@ -16,7 +16,11 @@ class Triangles
   end
 
   def triangle?
-    @sides[0] < @sides[1] + @sides[2] && @sides[0]  !=  TOCOMPARE &&  @sides[1] !=  TOCOMPARE &&  @sides[2] !=  TOCOMPARE
+    compare_two_sides = @sides[0] < @sides[1] + @sides[2] 
+    side1_not_zero = @sides[0]  !=  TOCOMPARE 
+    side2_not_zero = @sides[1] !=  TOCOMPARE
+    side3_not_zero = @sides[2] !=  TOCOMPARE
+    compare_two_sides &&  side1_not_zero  &&  side2_not_zero  &&  side3_not_zero
   end
 
   def rectangular?
