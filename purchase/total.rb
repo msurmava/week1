@@ -14,6 +14,7 @@ class Shop
     puts "Please enter quantity:"
     @quantity = gets.chomp()
     @list[@name] = [@price.to_i,@quantity.to_i]
+    @price_quantitiy = [@price.to_i,@quantity.to_i]
     end
     @list 
   end
@@ -22,19 +23,19 @@ class Shop
     user_input
   end
   def one_item_at_a_time
-    @list.each{|k,v| @list[k] = v.inject(:*)}
+    @list.each{|name,_| @list[name] = @price_quantitiy.inject(:*)}
   end
   def total_sum
     one_item_at_a_time.values.inject(:+)
   end
 
   def newone
-    plain_list
-    one_item_at_a_time
-    total_sum
+    puts plain_list
+    puts one_item_at_a_time
+    puts total_sum
   end
 end
 
 
-  
+
 Shop.new.newone
