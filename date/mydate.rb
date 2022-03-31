@@ -17,13 +17,13 @@ class Mydate
   
   def days_in_order
     if date[-1]  ==  "1" &&  date !=  "11"
-      return date  + "st"
+      date  + "st"
     elsif date[-1] ==  "2" &&  date !=  "12"
-      return  date  + "nd"
+      date  + "nd"
     elsif date[-1] == "3"
-      return date + "rd"
+      date + "rd"
     else 
-      return date  + "th"
+      date  + "th"
     end    
   end   
 end
