@@ -1,20 +1,30 @@
 #returns hash of vowels and their positions in alphabet.
-class Index 
 
-  POSITION = 1
+POSITION = 1
+
+class Index
   
-    def initialize
-      @vowels
-    end
+  def initialize
+    @vowels = {}
+  end
 
-    def hash_of_vowels_with_indexes
-      @vowels= { "a" => ("a".ord - "a".ord + POSITION),
-        "e" => ("e".ord - "a".ord + POSITION),
-        "i" => ("i".ord - "a".ord + POSITION),
-        "o" => ("o".ord - "a".ord + POSITION),
-        "u" => ("u".ord - "a".ord + POSITION)
+  def find_position
+    "a".ord - POSITION
+  end
+
+  def hash_of_vowels
+      @vowels = { "a" => "a".ord - find_position,
+        "e" => "e".ord  - find_position,
+        "i" => "i".ord  - find_position,
+        "o" => "o".ord  - find_position,
+        "u" => "u".ord  - find_position
       }
     end
+
+  def vowels_with_indexes
+    hash_of_vowels
+  end
 end
 
- puts Index.new.hash_of_vowels_with_indexes
+ puts Index.new.vowels_with_indexes
+ 
