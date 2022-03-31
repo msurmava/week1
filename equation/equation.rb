@@ -12,11 +12,11 @@ class Equation
   end
 
   def discriminant_calculation
-   @discriminant =  @second_coeff  **  FOR_DISC  - TO_MULTIPLY  * @first_coeff  * @third_coeff
+    @discriminant =  @second_coeff**FOR_DISC - TO_MULTIPLY*@first_coeff*@third_coeff
   end
 
   def root_if_discriminant_zero
-    @root << (-@second_coeff  + Math.sqrt(@discriminant))  / FOR_ROOT * @first_coeff
+    @root << (-@second_coeff  + Math.sqrt(@discriminant)) / FOR_ROOT * @first_coeff
     puts "Discriminant is: #{@discriminant}, root for this equation is #{@root.join}"
   end
 
@@ -25,8 +25,8 @@ class Equation
   end
 
   def roots_if_discriminant_positive
-    @root << ( -@second_coeff  + Math.sqrt(@discriminant )) / FOR_ROOT * @first_coeff
-    @root << ( -@second_coeff  - Math.sqrt(@discriminant )) / FOR_ROOT * @first_coeff
+    @root << (-@second_coeff  + Math.sqrt(@discriminant )) / FOR_ROOT * @first_coeff
+    @root << (-@second_coeff  - Math.sqrt(@discriminant )) / FOR_ROOT * @first_coeff
     puts "Discriminant is: #{@discriminant}, this equation has two roots : #{@root[0]} and #{@root[-1]}"
   end
   
