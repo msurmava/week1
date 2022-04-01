@@ -1,6 +1,6 @@
 #calculates ideal weight by height
 
-class Ideal_weight
+class IdealWeightCounter
     TOSUBTRACT = 100
     EDGE  = 0
 
@@ -11,14 +11,7 @@ class Ideal_weight
       @height = gets.chomp.to_i
     end
 
-    def validate_parameters
-      if @height == 0
-        warn "#{@name.capitalize}, you entered invalid weight"
-        exit 1
-      end
-    end
-
-    def optimal
+    def call
       validate_parameters
       ideal = @height - TOSUBTRACT
       if ideal  < EDGE
@@ -27,7 +20,15 @@ class Ideal_weight
         "#{@name.capitalize}, your ideal weight is #{ideal} kgs!"
       end
     end
+
+    private
+    def validate_parameters
+      if @height == 0
+        warn "#{@name.capitalize}, you entered invalid height"
+        exit 1
+      end
+    end
 end
 
 
-puts Ideal_weight.new.optimal
+puts IdealWeightCounter.new.call
