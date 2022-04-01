@@ -22,7 +22,7 @@ class Shop
   def plain_list
     user_input
   end
-  
+
   def one_item_at_a_time
     @list.each{|name,_| @list[name] = @price_quantitiy.inject(:*)}
   end
@@ -31,13 +31,13 @@ class Shop
     one_item_at_a_time.values.inject(:+)
   end
 
-  def newone
+  def order_details
     puts plain_list
     puts one_item_at_a_time
-    puts total_sum
+    puts "your total is #{total_sum}"
   end
 end
 
 
 
-Shop.new.newone
+Shop.new.order_details
