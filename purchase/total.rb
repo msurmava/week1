@@ -4,6 +4,13 @@ class Shop
     @price_quantitiy = []
   end
 
+  def validate_parameters
+    if @price.to_f == 0 || @quantity.to_f == 0
+      warn "not valid parameters"
+      exit 1
+    end
+  end
+
   def user_input
     loop do
     puts "Please enter item:"
@@ -33,6 +40,7 @@ class Shop
 
   def order_details
     puts plain_list
+    validate_parameters
     puts one_item_at_a_time
     puts "your total is #{total_sum}"
   end
