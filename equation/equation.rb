@@ -11,6 +11,13 @@ class Equation
     @root = []
   end
 
+  def validate_parameters
+    if @first_coeff == 0 || @second_coeff ==  0 ||  @third_coeff  ==  0
+      warn  "parameters should not be 0!"
+      exit 1
+    end
+  end
+
   def discriminant_calculation
     @discriminant =  @second_coeff**FOR_DISC - TO_MULTIPLY*@first_coeff*@third_coeff
   end
@@ -31,6 +38,7 @@ class Equation
   end
   
   def calculate_roots
+    validate_parameters
     if discriminant_calculation.zero?
       root_if_discriminant_zero
     elsif discriminant_calculation.positive?
@@ -42,4 +50,4 @@ class Equation
 end
 
 
-Equation.new(1,-14,12).calculate_roots
+Equation.new(1,-14,0).calculate_roots
