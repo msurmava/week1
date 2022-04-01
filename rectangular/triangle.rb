@@ -1,9 +1,9 @@
 # Cheks what kind of triangle user has
 
-class Triangles
-  POWER_2 = 2
-  TOCOMPARE = 0
+POWER_2 = 2
+TOCOMPARE = 0
 
+class Triangles
   def initialize
     @sides  = []
     puts  "Enter triangle side (cm):"
@@ -13,6 +13,14 @@ class Triangles
     puts  "Enter another triangle side (cm):"
     @sides << gets.chomp.to_i
     @sides.sort!.reverse!
+  end
+
+  
+  def validate_parameters
+    if  @sides.include?(0)
+    warn "parameter not supported"
+    exit 1
+    end
   end
 
   def triangle?
@@ -36,6 +44,7 @@ class Triangles
   end
 
   def kind_of_triangle
+    validate_parameters
     if rectangular? && !isosceles?  &&  triangle?
       puts  "Your triangle is rectangular!"
     elsif rectangular? && isosceles?  &&  triangle?
