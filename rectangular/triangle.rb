@@ -15,7 +15,6 @@ class Triangles
     @sides.sort!.reverse!
   end
 
-  
   def validate_parameters
     if  @sides.include?(0)
     warn "parameter not supported"
