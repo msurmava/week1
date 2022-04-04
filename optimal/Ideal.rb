@@ -27,7 +27,7 @@ class IdealWeightCounter
   end
 
   def validate_parameters
-    return unless @height.zero?
+    return unless @height <= 0
 
     warn "#{@name.capitalize}, you entered invalid height"
     exit 1
