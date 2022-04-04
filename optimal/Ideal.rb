@@ -31,7 +31,6 @@ class IdealWeightCounter
 
     warn "#{@name.capitalize}, you entered invalid height"
     exit 1
-  end
 end
 
 puts IdealWeightCounter.new.call
