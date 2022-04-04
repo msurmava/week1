@@ -1,5 +1,5 @@
 #shows days that have 30 days
-class Thirty_days
+class MonthsWithThirtyDays
   def initialize
      @months = {"January" => 31,
       "February" => 28,
@@ -16,9 +16,15 @@ class Thirty_days
      }
   end
 
+  def call
+    days_30
+  end
+
+  private
+
   def days_30
     @months.select{|month,length| month if length == 30}.keys.join(", ")
   end
 end
 
-puts Thirty_days.new.days_30
+puts MonthsWithThirtyDays.new.call
