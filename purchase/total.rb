@@ -23,7 +23,7 @@ class CalculateOrderTotalService
   def validate_parameters
     return unless @price.to_f.zero? || @quantity.to_f.zero?
 
-    raise AttributeError, "#{@name.capitalize}, you entered invalid height"
+    raise AttributeError, 'Invalid parameters entered'
   end
 
   def user_input
