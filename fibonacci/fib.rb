@@ -1,5 +1,5 @@
 # fibonacci numbers up to 100
-class FibonacciNubersUpToHundred
+class FibonacciUpToHundredService
   LIMIT = 100
 
   def initialize
@@ -18,4 +18,4 @@ class FibonacciNubersUpToHundred
   end
 end
 
-puts FibonacciNubersUpToHundred.new.call
+puts FibonacciUpToHundredService.new.call
