@@ -1,19 +1,22 @@
-#increments of five from 10 to 100
+# increments of five from 10 to 100
+class IncrementsOfFive
+  LIMIT = 100
+  NUMBER = 5
 
-LIMIT = 100
-NUMBER = 5
-
-class Increments  
   def initialize
-    @numbers = [10]
+    @increment_numbers = [10]
   end
-  
-  def of_5
-    until @numbers[-1] == LIMIT
-    @numbers << @numbers[-1] +  NUMBER
-    end
-    @numbers  
-  end
-end  
 
-puts Increments.new.of_5
+  def call
+    increments_calculator
+  end
+
+  private
+
+  def increments_calculator
+    @increment_numbers << @increment_numbers[-1] + NUMBER until @increment_numbers[-1] == LIMIT
+    @increment_numbers
+  end
+end
+
+puts IncrementsOfFive.new.call
