@@ -18,16 +18,19 @@ class CalculateTriangleAreaService
 
   private
 
+  def parameter_number?
+    @base.to_s.scan(/\D/).empty? && @height.to_s.scan(/\D/).empty?
+  end
+
   def validate_parameters
-    return unless @base <= 0 || @height <= 0 || !@base.to_s.scan(/\D/).empty? || !@height.to_s.scan(/\D/).empty?
+    return unless @base <= 0 || @height <= 0 || parameter_number?
 
     raise AttributeError, 'Parameters must be positive numbers!'
   end
 
   def area
-    validate_parameters
     @base * @height / DIVIDER
   end
 end
 
-puts CalculateTriangleAreaService.new(1, '4q').call
+puts CalculateTriangleAreaService.new(1, "7").call
