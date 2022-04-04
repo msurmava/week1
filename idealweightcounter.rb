@@ -1,5 +1,5 @@
 # calculates ideal weight by height
-class IdealWeightCounter
+class IdealWeightCounterService
   class AttributeError < StandardError; end
 
   SUBTRACTOR = 110
@@ -45,4 +45,4 @@ class IdealWeightCounter
   end
 end
 
-puts IdealWeightCounter.new.call
+puts IdealWeightCounterService.new.call
