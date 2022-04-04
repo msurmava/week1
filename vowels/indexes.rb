@@ -1,5 +1,5 @@
 # returns hash of vowels and their positions in alphabet
-class VowelsPossitionInAlphabet
+class VowelsPossitionInAlphabetService
   POSITION = 1
 
   def initialize
@@ -22,7 +22,8 @@ class VowelsPossitionInAlphabet
                 'i' => 'i'.ord  - find_position_of_a_vowel,
                 'o' => 'o'.ord  - find_position_of_a_vowel,
                 'u' => 'u'.ord  - find_position_of_a_vowel }
+    @vowels.map { |letter, position| "#{letter} - ##{position}" }.join(', ')
   end
 end
 
-puts VowelsPossitionInAlphabet.new.call
+puts VowelsPossitionInAlphabetService.new.call
