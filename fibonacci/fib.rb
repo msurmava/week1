@@ -1,19 +1,21 @@
-#fibonacci numbers up to 100
-LIMIT = 100
+# fibonacci numbers up to 100
+class FibonacciNubersUpToHundred
+  LIMIT = 100
 
-class Fibonacci
   def initialize
-    @fib_nums = [1,1]
+    @fib_nums = [1, 1]
   end
 
-  def up_to_100
-    until @fib_nums[-1] > LIMIT
-      @fib_nums  <<  @fib_nums[-1]  + @fib_nums[-2]
-    end
+  def call
+    fibonacci_sequence_generator
+  end
+
+  private
+
+  def fibonacci_sequence_generator
+    @fib_nums << @fib_nums[-1] + @fib_nums[-2] until @fib_nums[-1] > LIMIT
     @fib_nums[0..-2]
   end
-
 end
 
-
-puts Fibonacci.new.up_to_100
+puts FibonacciNubersUpToHundred.new.call
