@@ -1,24 +1,33 @@
-#calculates area of a triangle by base and height
+# calculates area of a triangle by base and height
+class CalculateTriangleAreaService
+  class AttributeError < StandardError; end
 
-class Triangle
-  AREA = 1/2.to_f
+  DIVIDER = 2
 
-  def initialize(base,height)
+  def initialize(base, height)
     @base = base.to_f
     @height = height.to_f
   end
 
+  def call
+    validate_parameters
+    area
+  rescue AttributeError => e
+    warn e
+  end
+
+  private
+
   def validate_parameters
-    if @base <= 0 || @height  <=  0
-      warn "Parameters must be positive numbers!"
-      exit 1
-    end
+    return unless @base <= 0 || @height <= 0 || !@base.to_s.scan(/\D/).empty? || !@height.to_s.scan(/\D/).empty?
+
+    raise AttributeError, 'Parameters must be positive numbers!'
   end
 
   def area
     validate_parameters
-    @base * @height * AREA
+    @base * @height / DIVIDER
   end
 end
 
-puts Triangle.new(1,"0").area
+puts CalculateTriangleAreaService.new(1, '4q').call
