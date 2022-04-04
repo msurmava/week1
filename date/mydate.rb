@@ -1,8 +1,8 @@
-# frozen_string_literal: true
-
 require 'date'
 # returns how many days are from 1st of January to a specific date
-class CountDaysFromJanuary1stToDate
+class CountDaysFromNewYearService
+  class AttributeError < StandardError; end
+
   def initialize
     puts 'enter date'
     @day = gets.chomp.to_i
@@ -18,6 +18,8 @@ class CountDaysFromJanuary1stToDate
     puts date_in_order_adds_nd
     puts date_in_order_adds_rd
     puts date_in_order_adds_th
+  rescue AttributeError => e
+    warn e
   end
 
   private
@@ -25,8 +27,7 @@ class CountDaysFromJanuary1stToDate
   def validate_parameters
     return unless Date.valid_date?(@year, @month, @day) == false
 
-    warn 'You entered date that is not valid, plase try again later.'
-    exit 1
+    raise AttributeError, 'You entered date that is not valid, plase try again later.'
   end
 
   def date_to_string
@@ -54,4 +55,4 @@ class CountDaysFromJanuary1stToDate
   end
 end
 
-puts CountDaysFromJanuary1stToDate.new.call
+puts CountDaysFromNewYearService.new.call
