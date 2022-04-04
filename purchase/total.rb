@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 # returns list of products, quantity and price and sums prices.
-class OrderPriceCalculator
+class CalculateOrderTotalService
+  class AttributeError < StandardError; end
+
   def initialize
     @list = {}
     @price_quantitiy = []
@@ -12,6 +14,8 @@ class OrderPriceCalculator
     validate_parameters
     puts one_item_at_a_time
     puts "your total is #{total_sum}"
+  rescue AttributeError => e
+    warn e
   end
 
   private
@@ -19,8 +23,7 @@ class OrderPriceCalculator
   def validate_parameters
     return unless @price.to_f.zero? || @quantity.to_f.zero?
 
-    warn 'not valid parameters'
-    exit 1
+    raise AttributeError, "#{@name.capitalize}, you entered invalid height"
   end
 
   def user_input
@@ -41,6 +44,9 @@ class OrderPriceCalculator
 
   def plain_list
     user_input
+    @shopping_cart = @list.map do |item, details|
+      "Item: #{item} - quantity:#{details[0]}, price:#{details[-1]}"
+    end
   end
 
   def one_item_at_a_time
@@ -52,4 +58,4 @@ class OrderPriceCalculator
   end
 end
 
-OrderPriceCalculator.new.call
+CalculateOrderTotalService.new.call
