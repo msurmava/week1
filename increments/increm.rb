@@ -1,5 +1,5 @@
 # increments of five from 10 to 100
-class IncrementsOfFive
+class IncrementsOfFiveService
   LIMIT = 100
   NUMBER = 5
 
@@ -19,4 +19,4 @@ class IncrementsOfFive
   end
 end
 
-puts IncrementsOfFive.new.call
+puts IncrementsOfFiveService.new.call
