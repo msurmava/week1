@@ -1,5 +1,7 @@
 # calculates ideal weight by height
 class IdealWeightCounter
+  class AttributeError < StandardError; end
+
   SUBTRACTOR = 110
   EDGE = 0
 
@@ -14,6 +16,8 @@ class IdealWeightCounter
     validate_parameters
     calculate_ideal_weight
     ideal_weight? ? already_opimal_weight_message : ideal_weight_message
+  rescue AttributeError => e
+    warn e
   end
 
   private
@@ -37,8 +41,7 @@ class IdealWeightCounter
   def validate_parameters
     return unless @height <= 0
 
-    warn "#{@name.capitalize}, you entered invalid height"
-    exit 1
+    raise AttributeError, "#{@name.capitalize}, you entered invalid height"
   end
 end
 
