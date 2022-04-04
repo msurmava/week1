@@ -1,5 +1,7 @@
 # Cheks what kind of triangle user has
-class WhatKindOfTriangle
+class DetectKindOfTriangleService
+  class AttributeError < StandardError; end
+
   POWER_2 = 2
   ZERO = 0
 
@@ -22,6 +24,8 @@ class WhatKindOfTriangle
     equilateral_and_isosceles_message
     just_triangle_message
     not_triangle_message
+  rescue AttributeError => e
+    warn e
   end
 
   private
@@ -29,8 +33,7 @@ class WhatKindOfTriangle
   def validate_parameters
     return unless @sides.include?(0)
 
-    warn 'parameter not supported'
-    exit 1
+    raise AttributeError, 'Parameter type not supported'
   end
 
   def triangle?
@@ -53,26 +56,44 @@ class WhatKindOfTriangle
     @sides[0] == @sides[1] && @sides[1] == @sides[2]
   end
 
+  def just_rectangular
+    rectangular? && !isosceles? && triangle?
+  end
+
   def just_rectangular_message
-    puts  'Your triangle is rectangular!' if rectangular? && !isosceles? && triangle?
+    puts 'Your triangle is rectangular!' if just_rectangular
+  end
+
+  def rectangular_and_isosceles
+    rectangular? && isosceles? && triangle?
   end
 
   def rectangular_and_isosceles_message
-    puts  'Your triangle is rectangular and isosceles!' if rectangular? && isosceles? && triangle?
+    puts 'Your triangle is rectangular and isosceles!' if rectangular_and_isosceles
+  end
+
+  def just_isosceles
+    isosceles? && triangle? && !rectangular? && !equilateral?
   end
 
   def just_isosceles_message
-    puts 'Your triangle is isosceles!' if isosceles? && triangle? && !rectangular? && !equilateral?
+    puts 'Your triangle is isosceles!' if just_isosceles
+  end
+
+  def equilateral_and_isosceles
+    equilateral? && triangle?
   end
 
   def equilateral_and_isosceles_message
-    puts 'Your triangle is equilateral and isosceles!' if equilateral? && triangle?
+    puts 'Your triangle is equilateral and isosceles!' if equilateral_and_isosceles
+  end
+
+  def just_triangle
+    triangle? && !equilateral? && !rectangular? && !isosceles?
   end
 
   def just_triangle_message
-    if triangle? && !equilateral? && !rectangular? && !isosceles?
-      puts 'Your triangle is not equlateral, isosceler or rectangular!'
-    end
+    puts 'Your triangle is not equlateral, isosceler or rectangular!' if just_triangle
   end
 
   def not_triangle_message
@@ -80,4 +101,4 @@ class WhatKindOfTriangle
   end
 end
 
-WhatKindOfTriangle.new.call
+DetectKindOfTriangleService.new.call
