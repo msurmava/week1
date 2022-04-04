@@ -1,5 +1,7 @@
 # calcuates discriminant and roots for quadratic equation
 class QuadraticEquationCalculator
+  class AttributeError < StandardError; end
+
   FOR_DISC = 2
   TO_MULTIPLY = 4
   FOR_ROOT = 2
@@ -16,6 +18,8 @@ class QuadraticEquationCalculator
     discriminant_zero?
     discriminant_positive?
     discriminant_negative?
+  rescue AttributeError => e
+    warn e
   end
 
   private
@@ -23,8 +27,7 @@ class QuadraticEquationCalculator
   def validate_parameters
     return unless @first_coeff.zero? || @second_coeff.zero? || @third_coeff.zero?
 
-    warn 'parameters should not be 0!'
-    exit 1
+    raise AttributeError, 'Invalid parameter!!!'
   end
 
   def discriminant_calculation
@@ -43,7 +46,7 @@ class QuadraticEquationCalculator
   def roots_message
     @root << (-@second_coeff + Math.sqrt(@discriminant)) / FOR_ROOT * @first_coeff
     @root << (-@second_coeff - Math.sqrt(@discriminant)) / FOR_ROOT * @first_coeff
-    puts "Discriminant is: #{@discriminant}, this equation has two roots : #{@root[0]} and #{@root[-1]}"
+    puts "Discriminant: #{@discriminant}, has two roots : #{@root[0]} and #{@root[-1]}"
   end
 
   def discriminant_zero?
