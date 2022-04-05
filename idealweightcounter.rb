@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # calculates ideal weight by height
 class IdealWeightCounterService
   class AttributeError < StandardError; end
