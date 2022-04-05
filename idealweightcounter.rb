@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # calculates ideal weight by height
 class IdealWeightCounterService
   class AttributeError < StandardError; end
@@ -25,7 +23,7 @@ class IdealWeightCounterService
   private
 
   def ideal_weight
-    @height - SUBTRACTOR
+    @ideal_weight ||= @height - SUBTRACTOR
   end
 
   def already_opimal_weight_message
