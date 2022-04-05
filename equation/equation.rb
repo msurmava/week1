@@ -7,9 +7,9 @@ class QuadraticEquationCalculator
   FOR_ROOT = 2
 
   def initialize(first_coeff, second_coeff, third_coeff)
-    @first_coeff = first_coeff.to_f
-    @second_coeff = second_coeff.to_f
-    @third_coeff = third_coeff.to_f
+    @first_coeff = first_coeff
+    @second_coeff = second_coeff
+    @third_coeff = third_coeff
     @root = []
   end
 
@@ -23,9 +23,16 @@ class QuadraticEquationCalculator
   end
 
   private
+  def parameter_string?
+    @first_coeff.is_a?(String) || @second_coeff.is_a?( String) || @third_coeff.is_a?(String)
+  end
+
+  def parameter_is_zero?
+    @first_coeff == 0 || @second_coeff == 0 || @third_coeff == 0
+  end
 
   def validate_parameters
-    return unless @first_coeff.zero? || @second_coeff.zero? || @third_coeff.zero?
+    return unless parameter_is_zero? || parameter_string?
 
     raise AttributeError, 'Invalid parameter!!!'
   end
@@ -50,7 +57,7 @@ class QuadraticEquationCalculator
   end
 
   def discriminant_zero?
-    root_if_discriminant_zero if discriminant_calculation.zero?
+    root_message if discriminant_calculation.zero?
   end
 
   def discriminant_positive?
@@ -62,4 +69,4 @@ class QuadraticEquationCalculator
   end
 end
 
-QuadraticEquationCalculator.new(1, 4, 1).call
+QuadraticEquationCalculator.new(4, 1, 1).call
