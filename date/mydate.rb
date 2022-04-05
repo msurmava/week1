@@ -27,7 +27,7 @@ class CountDaysFromNewYearService
   def validate_parameters
     return unless Date.valid_date?(@year, @month, @day) == false
 
-    raise AttributeError, 'You entered date that is not valid, plase try again later.'
+    raise AttributeError, 'You entered invalid parameter.'
   end
 
   def date_to_string
