@@ -16,7 +16,7 @@ class IdealWeightCounterService
 
   def call
     validate_parameters
-    calculate_ideal_weight
+    ideal_weight
     ideal_weight? ? already_opimal_weight_message : ideal_weight_message
   rescue AttributeError => e
     warn e
@@ -24,8 +24,8 @@ class IdealWeightCounterService
 
   private
 
-  def calculate_ideal_weight
-    @ideal = @height - SUBTRACTOR
+  def ideal_weight
+    @height - SUBTRACTOR
   end
 
   def already_opimal_weight_message
@@ -33,11 +33,11 @@ class IdealWeightCounterService
   end
 
   def ideal_weight_message
-    "#{@name.capitalize}, your ideal weight is #{@ideal} kgs!"
+    "#{@name.capitalize}, your ideal weight is #{ideal_weight} kgs!"
   end
 
   def ideal_weight?
-    @ideal < EDGE
+    ideal_weight < EDGE
   end
 
   def validate_parameters
@@ -48,3 +48,5 @@ class IdealWeightCounterService
 end
 
 puts IdealWeightCounterService.new.call
+
+
