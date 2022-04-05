@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # returns list of products, quantity and price and sums prices.
 class CalculateOrderTotalService
   class AttributeError < StandardError; end
@@ -10,7 +8,7 @@ class CalculateOrderTotalService
   end
 
   def call
-    puts plain_list
+    puts plain_list  
     validate_parameters
     puts one_item_at_a_time
     puts "your total is #{total_sum}"
