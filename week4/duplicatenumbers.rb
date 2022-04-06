@@ -34,7 +34,7 @@ rescue AttributeError => e
 
   def final_message
     duplicates.empty? ? "no duplicates to show" : duplicates
-  endrubo
+  end
   
   def valid_integer
     @numbers[0..-2].all? {|i| i.match(/^(\d)+$/) }
