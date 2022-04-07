@@ -2,6 +2,10 @@ class AttributeError < StandardError; end
 
 # counts how many numbers greater than five
 class NumbersGreaterThanFive
+
+  NUMBER_TO_COMPARE = 5
+  REGEX_FOR_NUMBER = /^(\d)+$/
+
   def initialize
     @number = []
   end
@@ -25,7 +29,7 @@ class NumbersGreaterThanFive
   end
 
   def map_numbers
-    @number[0..-2].select { |item| item.to_i > 5 }.length
+    @number[0..-2].select { |item| item.to_i > NUMBER_TO_COMPARE }.length
   end
 
   def result_message
@@ -33,7 +37,7 @@ class NumbersGreaterThanFive
   end
 
   def number?
-    @number[0..-2].all? { |item| item.match(/^(\d)+$/) }
+    @number[0..-2].all? { |item| item.match(REGEX_FOR_NUMBER) }
   end
 
   def validate_parameters
