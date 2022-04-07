@@ -41,7 +41,7 @@ class NumbersGreaterThanFive
   end
 
   def validate_parameters
-    return unless @number.empty? || !number?
+    return unless @number[0..-2].empty? || !number?
 
     raise AttributeError, 'please enter just numbers'
   end
