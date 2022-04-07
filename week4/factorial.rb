@@ -2,6 +2,8 @@ class AttributeError < StandardError; end
 
 # calculate factorial of a given number
 class CalculateFactorialService
+  REGEX_FOR_NUMBER = /^(\d)+$/
+
   def initialize
     puts 'enter number'
     @number = gets.chomp
@@ -25,7 +27,7 @@ class CalculateFactorialService
   end
 
   def number?
-    @number.match(/^(\d)+$/)
+    @number.match(REGEX_FOR_NUMBER)
   end
 
   def validate_parameters
