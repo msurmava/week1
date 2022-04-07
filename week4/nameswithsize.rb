@@ -1,8 +1,10 @@
 #returns language names with name length
 class CountingLaguageCharacters
+
+  LANGUAGES = %w[Ruby Python Java .NET HTML JavaScript].freeze
+
   def initialize
     @hash = {}
-    @languages = ['Ruby', 'Python', 'Java', '.NET', 'HTML', 'JavaScript']
   end
 
   def call 
@@ -12,8 +14,10 @@ class CountingLaguageCharacters
   private
 
   def create_hash_of_languages
-    langswithnums = @languages.map {|lang| @hash = {lang => lang.length}}.reduce Hash.new, :merge
+    langswithnums = LANGUAGES.map {|lang| @hash = {lang => lang.length}}.reduce Hash.new, :merge
   end
 end
 
 puts CountingLaguageCharacters.new.call
+
+
