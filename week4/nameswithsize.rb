@@ -14,7 +14,7 @@ class CountingLaguageCharacters
   private
 
   def create_hash_of_languages
-    langswithnums = LANGUAGES.map {|lang| @hash = {lang => lang.length}}.reduce Hash.new, :merge
+    LANGUAGES.map {|lang| @hash = {lang => lang.length}}.reduce Hash.new, :merge
   end
 end
 
