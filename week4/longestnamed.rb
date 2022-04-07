@@ -1,8 +1,7 @@
 # findslongestwordinarray
 class FindLongestWord
-  def initialize
-    @words = ['Ruby', 'Python', 'Java', '.NET', 'HTML', 'JavaScript']
-  end
+
+  LANGUAGES = %w[Ruby Python Java .NET HTML JavaScript].freeze
 
   def call
     find_longest_word
@@ -11,8 +10,10 @@ class FindLongestWord
   private
 
   def find_longest_word
-    @words.sort_by(&:length).reverse.shift
+    LANGUAGES.sort_by(&:length).reverse.shift
   end
 end
 
 puts FindLongestWord.new.call
+
+
