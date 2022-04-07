@@ -2,6 +2,9 @@ class AttributeError < StandardError; end
 
 #counts duplicate numbers from an array
 class FindsDuplicateNumbersService
+
+  REGEX_FOR_NUMBER = /^(\d)+$/
+
  def initialize
   @numbers = []
  end
@@ -37,7 +40,7 @@ rescue AttributeError => e
   end
   
   def valid_integer
-    @numbers[0..-2].all? {|i| i.match(/^(\d)+$/) }
+    @numbers[0..-2].all? {|i| i.match(REGEX_FOR_NUMBER) }
   end
 
   def empty_array
