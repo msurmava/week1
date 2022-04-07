@@ -3,6 +3,9 @@ class AttributeError < StandardError; end
 
 # counts prime numebers
 class CountsPrimeNumberService
+
+  REGEX_FOR_NUMBER = /^(\d)+$/
+
   def initialize
     @number = []
   end
@@ -34,7 +37,7 @@ class CountsPrimeNumberService
   end
 
   def number?
-    @number[0..-2].all? { |item| item.match(/^(\d)+$/) }
+    @number[0..-2].all? { |item| item.match(REGEX_FOR_NUMBER) }
   end
 
   def validate_parameters
