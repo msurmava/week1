@@ -2,6 +2,7 @@ class AttributeError < StandardError; end
 
 # calculate factorial of a given number
 class CalculateFactorialService
+  
   REGEX_FOR_NUMBER = /^(\d)+$/
 
   def initialize
