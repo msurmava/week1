@@ -1,7 +1,9 @@
-class AttributeError < StandardError; end
-
 # returns a hash that stores the indexes of each letter in an array.
 class MapStringLettersService
+  class AttributeError < StandardError; end
+
+  NOT_NUMBER = '^0-9'
+
   def initialize
     puts 'please eneter a word'
     @word = gets.chomp
@@ -21,13 +23,11 @@ class MapStringLettersService
   end
 
   def grouped_by_letter
-    (0...separate_characters.length).map { |index| [index, separate_characters[index]] }.group_by do |character|
-      character[-1]
-    end
+    (0...separate_characters.length).map { |index| [index, separate_characters[index]] }.group_by(&:last)
   end
 
   def list_of_indexes
-    list = grouped_by_letter.map { |letter, indexes| { letter => indexes.join.tr('^0-9', '') } }
+    list = grouped_by_letter.map { |letter, indexes| { letter => indexes.join.tr(NOT_NUMBER, '') } }
     list = list.reduce({}, :merge)
     list.map { |letter, index| { letter => index.split('').map(&:to_i) } }.reduce({}, :merge)
   end
