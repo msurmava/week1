@@ -1,56 +1,56 @@
-class AttributeError < StandardError; end
-
-#counts duplicate numbers from an array
+# counts duplicate numbers from an array
 class FindsDuplicateNumbersService
+  class AttributeError < StandardError; end
 
-  REGEX_FOR_NUMBER = /^(\d)+$/
+  REGEX_FOR_NUMBER = /^(\d)+$/.freeze
+  WITHOUT_LAST_ELEMENT = (0..-2).freeze
 
- def initialize
-  @numbers = []
- end
+  def initialize
+    @numbers = []
+  end
 
- def call
-  user_input
-  validate_parameters
-  final_message
-rescue AttributeError => e
-  warn e
+  def call
+    user_input
+    validate_parameters
+    final_message
+  rescue AttributeError => e
+    warn e
   end
 
   private
 
   def user_input
-    loop do 
-    puts "number please (type 'OK' to stop)"
-    @numbers << gets.chomp()
-    break if @numbers[-1].upcase == "OK"
+    loop do
+      puts "number please (type 'OK' to stop)"
+      @numbers << gets.chomp
+      break if @numbers.last.upcase == 'OK'
     end
   end
 
   def number_count
-    @numbers[0..-2].group_by(&:itself).transform_values(&:count)
+    @numbers[WITHOUT_LAST_ELEMENT].group_by(&:itself).transform_values(&:count)
   end
 
   def duplicates
-    number_count.select{|_,count| count > 1}.keys.map{|number| number.to_i}
+    number_count.select { |_, count| count > 1 }.keys.map(&:to_i)
   end
 
   def final_message
-    duplicates.empty? ? "no duplicates to show" : duplicates
+    duplicates.empty? ? 'no duplicates to show' : duplicates
   end
-  
+
   def valid_integer
-    @numbers[0..-2].all? {|i| i.match(REGEX_FOR_NUMBER) }
+    @numbers[WITHOUT_LAST_ELEMENT].all? { |element| element.match(REGEX_FOR_NUMBER) }
   end
 
   def empty_array
     @numbers.empty?
   end
-  
+
   def validate_parameters
     return unless !valid_integer || empty_array
-    
-    raise AttributeError, "invlaid input"
+
+    raise AttributeError, 'invlaid input'
   end
 end
 
