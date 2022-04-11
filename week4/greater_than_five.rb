@@ -1,10 +1,10 @@
-class AttributeError < StandardError; end
-
 # counts how many numbers greater than five
 class NumbersGreaterThanFive
+  class AttributeError < StandardError; end
 
   NUMBER_TO_COMPARE = 5
-  REGEX_FOR_NUMBER = /^(\d)+$/
+  REGEX_FOR_NUMBER = /^(\d)+$/.freeze
+  WITHOUTLASTELEMENT = (0..-2).freeze
 
   def initialize
     @number = []
@@ -24,12 +24,12 @@ class NumbersGreaterThanFive
     loop do
       puts 'please eneter number (stop- to stop)'
       @number << gets.chomp
-      break if @number[-1] == 'stop'
+      break if @number.last == 'stop'
     end
   end
 
   def map_numbers
-    @number[0..-2].select { |item| item.to_i > NUMBER_TO_COMPARE }.length
+    @number[WITHOUTLASTELEMENT].select { |item| item.to_i > NUMBER_TO_COMPARE }.length
   end
 
   def result_message
@@ -37,11 +37,11 @@ class NumbersGreaterThanFive
   end
 
   def number?
-    @number[0..-2].all? { |item| item.match(REGEX_FOR_NUMBER) }
+    @number[WITHOUTLASTELEMENT].all? { |item| item.match(REGEX_FOR_NUMBER) }
   end
 
   def validate_parameters
-    return unless @number[0..-2].empty? || !number?
+    return unless @number[WITHOUTLASTELEMENT].empty? || !number?
 
     raise AttributeError, 'please enter just numbers'
   end
