@@ -1,9 +1,9 @@
-class AttributeError < StandardError; end
-
 # calculate factorial of a given number
 class CalculateFactorialService
-  
-  REGEX_FOR_NUMBER = /^(\d)+$/
+  class AttributeError < StandardError; end
+
+  REGEX_FOR_NUMBER = /^(\d)+$/.freeze
+  NUMBER_ONE = 1
 
   def initialize
     puts 'enter number'
@@ -20,7 +20,7 @@ class CalculateFactorialService
   private
 
   def factorial
-    (1..@number.to_f).inject(1, :*)
+    (NUMBER_ONE..@number.to_f).inject(NUMBER_ONE, :*)
   end
 
   def final_message
