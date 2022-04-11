@@ -53,7 +53,7 @@ class MissingNumberService
   end
 
   def validate_parameters
-    return if valid_range?
+    return unless valid_range?
 
     raise AttributeError, 'not valid parameters'
   end
