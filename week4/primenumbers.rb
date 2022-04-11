@@ -1,10 +1,11 @@
 require 'prime'
-class AttributeError < StandardError; end
 
 # counts prime numebers
 class CountsPrimeNumberService
+  class AttributeError < StandardError; end
 
-  REGEX_FOR_NUMBER = /^(\d)+$/
+  REGEX_FOR_NUMBER = /^(\d)+$/.freeze
+  WITHOUT_LAST_ELEMENT = (0..-2).freeze
 
   def initialize
     @number = []
@@ -24,7 +25,7 @@ class CountsPrimeNumberService
     loop do
       puts 'please eneter number (stop - to stop)'
       @number << gets.chomp
-      break if @number[-1] == 'stop'
+      break if @number.last == 'stop'
     end
   end
 
@@ -37,7 +38,7 @@ class CountsPrimeNumberService
   end
 
   def number?
-    @number[0..-2].all? { |item| item.match(REGEX_FOR_NUMBER) }
+    @number[WITHOUT_LAST_ELEMENT].all? { |item| item.match(REGEX_FOR_NUMBER) }
   end
 
   def validate_parameters
