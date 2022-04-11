@@ -1,7 +1,7 @@
-class AttributeError < StandardError; end
-
 # sums up numbers of a range.
 class SumOfDigitsService
+  class AttributeError < StandardError; end
+
   def initialize(number_one, number_two)
     @number_one = number_one
     @number_two = number_two
