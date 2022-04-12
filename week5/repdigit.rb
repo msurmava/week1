@@ -12,7 +12,7 @@ class RepDigitDetectService
 
   def call
     validate_parameters
-    message_to_print
+    is_repetitive?
   rescue AttributeError => e
     warn e
   end
@@ -20,11 +20,11 @@ class RepDigitDetectService
   private
 
   def digit_count
-    @number.split('').group_by(&:itself).transform_values(&:count).length
+    @number.split('').uniq.length 
   end
 
-  def message_to_print
-    puts digit_count == DESIRED_QUANTITY ? "#{@number} has repetitive digits only" : 'not repetitive'
+  def is_repetitive?
+    digit_count == DESIRED_QUANTITY ? true : false
   end
 
   def number?
@@ -37,6 +37,6 @@ class RepDigitDetectService
     raise AttributeError, 'please enter just numbers'
   end
 end
-RepDigitDetectService.new.call
+puts RepDigitDetectService.new.call
 
 
