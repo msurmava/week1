@@ -44,16 +44,12 @@ class MissingNumberService
     @numbers.include?(ZERO)
   end
 
-  def one_missing?
-    (RANGE - @numbers).length == NUMBER_OF_MISSINGS
-  end
-
   def valid_range?
-    valid_range_length && each_element_unique && !zero? && one_missing?
+    valid_range_length && each_element_unique && !zero?
   end
 
   def validate_parameters
-    return unless valid_range?
+    return unless !valid_range?
 
     raise AttributeError, 'not valid parameters'
   end
