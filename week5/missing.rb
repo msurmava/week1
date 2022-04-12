@@ -5,7 +5,6 @@ class MissingNumberService
   RANGE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].freeze
   DESIRABLE_LENGTH = 9
   ZERO = 0
-  NUMBER_OF_MISSINGS = 1
 
   def initialize
     @numbers = []
