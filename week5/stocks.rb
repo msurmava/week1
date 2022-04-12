@@ -29,7 +29,7 @@ class StockPickService
   end
 
   def best
-    combined_result.select { |_k, v| v == combined_result.values.max }.keys.flatten
+    combined_result.select { |_, profit| profit == combined_result.values.max }.keys.flatten
   end
 
   def message
