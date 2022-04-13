@@ -2,14 +2,13 @@
 class SumEvenFibonacciService
   class AttributeError < StandardError; end
 
-  FIBONACCI_SEQUENCE = [1, 1].freeze
+  FIBONACCI_SEQUENCE = [1, 1]
   WITHOUT_LAST_ELEMENT = (0..-2).freeze
   BEFORE_LAST = -2
   REGEX_FOR_NUMBER = /^(\d)+$/.freeze
 
-  def initialize
-    puts 'please eneter number up to which we will sum up even fibonacci numbers:'
-    @limit = gets.chomp
+  def initialize(limit)
+    @limit = limit
   end
 
   def call
@@ -33,16 +32,16 @@ class SumEvenFibonacciService
   end
 
   def number?
-    @limit.match(REGEX_FOR_NUMBER)
+    @limit.to_s.match?(REGEX_FOR_NUMBER)
   end
 
   def validate_parameters
-    return unless @limit.empty? || !number?
+    return unless @limit.to_s.empty? || !number?
 
     raise AttributeError, 'please enter number'
   end
 end
 
-puts SumEvenFibonacciService.new.call
+puts SumEvenFibonacciService.new("55").call
 
 
