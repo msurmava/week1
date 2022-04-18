@@ -48,4 +48,3 @@ end
 
 puts WordsFromDictionaryService.new(word, dictionary).call
 
-
