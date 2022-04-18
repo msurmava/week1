@@ -3,13 +3,15 @@ class StockPickService
   class AttributeError < StandardError; end
 
   REGEX_FOR_NUMBER = /^(\d)+$/.freeze
+  INDEX_SUBTRACTOR = 1
+
   def initialize(prices)
     @prices = prices
   end
 
   def call
     validate_parameters
-    message
+    days
   rescue AttributeError => e
     warn e
   end
@@ -32,8 +34,8 @@ class StockPickService
     combined_result.select { |_, profit| profit == combined_result.values.max }.keys.flatten
   end
 
-  def message
-    "#{best} : for a profit of $#{best.last} - $#{best.first} = $#{best.reverse.inject(&:-)} "
+  def days
+    [@prices.find_index(best.first), @prices.length - 1 - @prices.reverse.find_index(best.last)]
   end
 
   def valid_numbers?
@@ -47,6 +49,6 @@ class StockPickService
   end
 end
 
-puts StockPickService.new([17, 3, 6, 9, 15, 8, 6, 1, 20]).call
+puts StockPickService.new([17, 3, 6, 9, 1, 20, 1, 8, 20, 20]).call
 
 
