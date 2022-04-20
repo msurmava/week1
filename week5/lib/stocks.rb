@@ -6,10 +6,11 @@ class StockPickService
   INDEX_SUBTRACTOR = 1
 
   def initialize(prices)
-    @prices = prices
+    @prices =  prices
   end
 
   def call
+    validate_if_array
     validate_if_number
     validate_if_suitable_numbers
     days
@@ -37,6 +38,12 @@ class StockPickService
 
   def days
     [@prices.find_index(best.first), @prices.length - 1 - @prices.reverse.find_index(best.last)]
+  end
+
+  def validate_if_array
+    return if @prices.is_a?(Array)
+
+    raise AttributeError, 'i need array'
   end
 
   def validate_if_number
