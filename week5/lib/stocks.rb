@@ -10,10 +10,11 @@ class StockPickService
   end
 
   def call
-    validate_parameters
+    validate_if_number
+    validate_if_suitable_numbers
     days
   rescue AttributeError => e
-    warn e
+    e.message
   end
 
   private
@@ -38,17 +39,19 @@ class StockPickService
     [@prices.find_index(best.first), @prices.length - 1 - @prices.reverse.find_index(best.last)]
   end
 
-  def valid_numbers?
-    @prices.all? { |item| item.to_s.match(REGEX_FOR_NUMBER) }
+  def validate_if_number
+    return if @prices.all? { |item| item.is_a?(Numeric) }
+
+    raise AttributeError, 'all parameters must be numbers'
   end
 
-  def validate_parameters
-    return if valid_numbers?
+  def validate_if_suitable_numbers
+    return unless best.empty?
 
-    raise AttributeError, ' you entered invalid parameters'
+    raise AttributeError, 'no way for benifit'
   end
 end
 
-puts StockPickService.new([17, 3, 6, 9, 1, 20, 1, 8, 20, 20]).call
+puts StockPickService.new([1, 2, 3]).call
 
 
