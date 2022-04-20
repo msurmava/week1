@@ -5,7 +5,7 @@ class BublesortService
   SUBTRACTOR = 1
   NEXT = 1
 
-  def initialize(number)
+  def initialize(number = [])
     @number = number
     @sorted = []
   end
@@ -14,7 +14,7 @@ class BublesortService
     validate_parameters
     sort_numbers
   rescue AttributeError => e
-    warn e
+    e.message
   end
 
   private
@@ -41,7 +41,7 @@ class BublesortService
   end
 
   def all_numeric?
-    @number.select { |element| element.scan(/\D/).empty? }.length == @number.length
+    @number.select { |element| element.to_s.scan(/\D/).empty? }.length == @number.length
   end
 
   def array_given?
@@ -49,14 +49,10 @@ class BublesortService
   end
 
   def validate_parameters
-    return unless !all_numeric? || !array_given?
+    return unless !all_numeric? || !array_given? || @number.empty?
 
     raise AttributeError, 'please give me an array of numbers'
   end
 end
 
-puts 'please enter numbers with space'
-numbers = gets.chomp.split(' ')
-puts BublesortService.new(numbers).call
-
-
+p BublesortService.new([]).call
