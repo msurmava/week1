@@ -42,7 +42,7 @@ class TicTacToeService
     four = (@board[0] == @board[3] && @board[3] == @board[6])
     five = (@board[1] == @board[4] && @board[4] == @board[7])
     six = (@board[2] == @board[5] && @board[5] == @board[8])
-    seven = (@board[1] == @board[4] && @board[4] == @board[8])
+    seven = (@board[0] == @board[4] && @board[4] == @board[8])
     eight = (@board[2] == @board[4] && @board[4] == @board[6])
 
     @win = if one || two || three || four || five || six || seven || eight
@@ -97,10 +97,13 @@ class TicTacToeService
       break if winning_combination || full_board
     end
     if winning_combination && @board.join.scan(/\D/).length % TWO != IF_EVEN
+      puts board_look
       puts "\e[31mplayer one\e[0m you won"
     elsif winning_combination && @board.join.scan(/\D/).length % TWO == IF_EVEN
+      puts board_look
       puts "\e[32mplayer two\e[0m you won"
     else
+      puts board_look
       puts "Both loosers it's a draw!"
     end
   end
