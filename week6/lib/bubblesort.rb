@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Bubble sorts array of numbers
 class BublesortService
   class AttributeError < StandardError; end
@@ -6,7 +8,7 @@ class BublesortService
   NEXT = 1
 
   def initialize(number = [])
-    @number = number
+    @numbers = number
     @sorted = []
   end
 
@@ -17,14 +19,13 @@ class BublesortService
     e.message
   end
 
-  private
+  # private
 
   def numbers_length
     @numbers.length
   end
 
   def sort_numbers
-    @numbers = @number.map(&:to_i)
     loop do
       change_made = false
 
@@ -40,19 +41,21 @@ class BublesortService
     @numbers
   end
 
-  def all_numeric?
-    @number.select { |element| element.to_s.scan(/\D/).empty? }.length == @number.length
+  def same_type?
+    @numbers.map(&:class).uniq.length == 1
   end
 
   def array_given?
-    @number.is_a?(Array)
+    @numbers.is_a?(Array)
+  end
+
+  def invalid_elements
+    !same_type? || !array_given? || @numbers.empty?
   end
 
   def validate_parameters
-    return unless !all_numeric? || !array_given? || @number.empty?
-
-    raise AttributeError, 'please give me an array of numbers'
+    raise AttributeError, 'Invalid Input' if invalid_elements
   end
 end
 
-p BublesortService.new([]).call
+p BublesortService.new({:ok => 5}).call
