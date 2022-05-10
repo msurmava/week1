@@ -1,0 +1,14 @@
+class Node
+  attr_accessor :word, :value, :next
+
+  def initialize(value)
+    @value  = value
+    @word = false
+    @next = []
+  
+  end
+end
+
+
+
+
