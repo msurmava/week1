@@ -1,3 +1,6 @@
+$LOAD_PATH << "../prefix_trie"
+
+
 class Node
   attr_accessor :word, :value, :next
 

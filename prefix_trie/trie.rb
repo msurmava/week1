@@ -1,10 +1,12 @@
 require_relative 'node'
+require_relative 'csv_writer'
 
 class Trie
   attr_reader :root
 
   def initialize
     @root = Node.new("")
+    @container = CSVreadandwrite.new
   end
 
   def add_word(word)
@@ -48,7 +50,8 @@ class Trie
      end
    end
 
-   def list(prefix)
+   def list(prefix=nil)
+    return words if prefix.nil?
     stack        = []
     words        = []
     prefix_stack = []
@@ -60,21 +63,26 @@ class Trie
     until stack.empty?
       node = stack.pop
   
-      prefix_stack.pop and next if node == :smth
+      prefix_stack.pop and next if node == :value
   
       prefix_stack << node.value
-      stack        << :smth
+      stack        << :value
   
       words << prefix_stack.join if node.word
   
       node.next.each { |n| stack << n }
-    end
-  
-    words
-  
-   
+    end  
+    words   
   end
+
+  def csv_write(word)
+    @container.write(word)
   end
+
+  def csv_read
+    @container.read
+  end
+end
 
    
 
@@ -88,4 +96,4 @@ trie.add_word("cape")
 trie.add_word("camp")
 trie.add_word('bad')
 trie.add_word('person')
-p trie.list('ca')
+p trie.csv_read
