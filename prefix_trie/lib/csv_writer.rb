@@ -2,7 +2,7 @@ require 'csv'
 
 class CSVreadandwrite
   def initialize
-    @path = './data.csv'
+    @path = '../data.csv'
   end
 
   def write(word)

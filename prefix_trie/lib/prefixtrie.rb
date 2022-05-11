@@ -1,7 +1,7 @@
 require_relative 'node'
 require_relative 'csv_writer'
 
-class Trie
+class PrefixTrie
   attr_reader :root
 
   def initialize
@@ -85,15 +85,3 @@ class Trie
 end
 
    
-
-    
-
-trie = Trie.new
-
-trie.add_word("cat")
-trie.add_word("cap")
-trie.add_word("cape")
-trie.add_word("camp")
-trie.add_word('bad')
-trie.add_word('person')
-p trie.csv_read
